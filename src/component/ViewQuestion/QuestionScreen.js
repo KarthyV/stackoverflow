@@ -173,7 +173,7 @@ const QuestionScreen = ({ question }) => {
               <p>{user?.name}</p>
             </div>
           </div>
-          <div className="commments">
+          <div className="comments">
             <div className="comment">
               {comments.map((comment) => {
                 return (
@@ -231,6 +231,7 @@ const QuestionScreen = ({ question }) => {
             },
           };
           const voteCount = question.voteAns?.filter(
+            // eslint-disable-next-line
             (count) => count.answer_id == answer._id
           );
           return (
