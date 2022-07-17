@@ -59,7 +59,7 @@ const Auth = () => {
           <div onClick={handleGitHubSignIn} className="single-option">
             <img
               alt="github"
-              src="https://cdn-icons.flaticon.com/png/512/3291/premium/3291667.png?token=exp=1657283842~hmac=461134ddad1d48ad9c7fcb0d6ab7a77b"
+              src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
             />
             <p>Login with GitHub</p>
           </div>
