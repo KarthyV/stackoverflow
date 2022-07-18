@@ -9,13 +9,14 @@ import { getSearchResults } from "../../redux/actions/searchResults";
 const Search = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
+  const [searchParams] = useSearchParams(); // Getting the search query from the URL params
   const searchQuery = searchParams.get("q");
 
   useEffect(() => {
     dispatch(getSearchResults(searchQuery));
   }, [dispatch, searchQuery]);
 
+  //NOTE: Getting the search results from the results state
   const { loading, result } = useSelector((state) => state.searchResults);
 
   return (
@@ -29,6 +30,7 @@ const Search = () => {
           </div>
         </div>
 
+        {/* NOTE: If results are available rendering each question with QuestionCard comp, if not showing the h3 tag */}
         {!loading && result.length > 0 ? (
           result.map((question) => {
             return <QuestionCard question={question} key={question._id} />;

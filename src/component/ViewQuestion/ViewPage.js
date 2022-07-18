@@ -11,7 +11,7 @@ const ViewPage = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getQuestionById(id));
+    dispatch(getQuestionById(id)); // Getting the question id from QuestionCard comp and dispatching the getQuestionById action
   }, [id, dispatch]);
 
   const { question, loading } = useSelector((state) => state.viewQuestion);
@@ -19,6 +19,7 @@ const ViewPage = () => {
   return (
     <div className="home__page">
       <SideBar />
+      {/* if the current Question is available, rendering it by QuestionScreen Comp by passing question as prop */}
       {!loading && question && <QuestionScreen question={question} />}
     </div>
   );

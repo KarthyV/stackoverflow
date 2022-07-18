@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "./pageNotFound.css";
 
 const NotFound = () => {
+  //NOTE: If user provides an invalid url path, user will be redirected to 404 page
   const navigate = useNavigate();
   return (
     <div className="notFound">

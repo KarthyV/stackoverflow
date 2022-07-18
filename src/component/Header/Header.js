@@ -8,11 +8,12 @@ import { useSelector } from "react-redux";
 const Header = () => {
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
-  const params = { q: query };
-  const { user } = useSelector((state) => state.auth);
+  const params = { q: query }; // creating query params as per react-router-dom docs
+  const { user } = useSelector((state) => state.auth); // Getting the user profile picture from auth state
 
   const handleSearch = (e) => {
     if (e.key === "Enter") {
+      // creating a search query once user presses enter and navigating to search page
       navigate({
         pathname: "/search",
         search: `?${createSearchParams(params)}`,

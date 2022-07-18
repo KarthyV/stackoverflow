@@ -7,6 +7,7 @@ import { allUsersReducer } from "./allUsers";
 import searchResultsReducer from "./searchResultReducer";
 
 export default combineReducers({
+  //Combining all reducers and making an single state
   auth: authReducer,
   allQuestions: allQuestionReducer,
   viewQuestion: viewQuestionReducer,

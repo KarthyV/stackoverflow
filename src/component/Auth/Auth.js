@@ -15,18 +15,23 @@ const Auth = () => {
   const { accessToken, error, loading } = useSelector((state) => state.auth);
 
   useEffect(() => {
+    //if accessToken is found user will be redirected to homepage
     if (accessToken) navigate("/");
     // eslint-disable-next-line
   }, [accessToken]);
 
+  // Handles Google Sign Method
   const handleGoogleSignIn = () => {
+    // dispatch fires an action to actions of redux
     dispatch(loginWithGoogle());
   };
 
+  // Handles Facebook Sign Method
   const handleFacebookSignIn = () => {
     dispatch(loginWithFaceBook());
   };
 
+  // Handles Github Sign Method
   const handleGitHubSignIn = () => {
     dispatch(loginWithGitHub());
   };

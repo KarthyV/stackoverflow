@@ -2,6 +2,7 @@ import { Card, CardContent, CardMedia, Typography } from "@mui/material";
 import React from "react";
 
 const UsersBox = ({ user }) => {
+  // Getting the user details as prop from Users comp
   return (
     <Card sx={{ maxWidth: 200 }}>
       <CardMedia

@@ -12,6 +12,7 @@ import GradeIcon from "@mui/icons-material/Grade";
 import { toast } from "react-toastify";
 
 const QuestionScreen = ({ question }) => {
+  // Getting the current question details as prop
   var toolbarOptions = [
     ["bold", "italic", "underline", "strike"], // toggled buttons
     ["blockquote", "code-block"],
@@ -64,9 +65,9 @@ const QuestionScreen = ({ question }) => {
   ];
 
   const { title, created_at, body, comments, tags, user, _id, answers } =
-    question;
+    question; // Destructing the required fields from question
 
-  const { user: currentUser } = useSelector((state) => state.auth);
+  const { user: currentUser } = useSelector((state) => state.auth); //Getting the user from auth state and renaming it as currentUser
   const dispatch = useDispatch();
 
   const [show, setShow] = useState(false);
@@ -74,12 +75,15 @@ const QuestionScreen = ({ question }) => {
   const [textAnswer, setTextAnswer] = useState("");
 
   const addComment = async (e) => {
+    //Handling the addComment event
     e.preventDefault();
     if (textComment !== "") {
+      // Sending the comment if its not empty along with the currentUser details
       await axios
         .post(`/comment/${_id}`, { comment: textComment, user: currentUser })
         .then((res) => {
           if (res.status === 201) {
+            // If adding comment is success dispatching the getQuestionById action for updating the current state
             toast.success(res.data.message);
             dispatch(getQuestionById(_id));
           }
@@ -89,9 +93,11 @@ const QuestionScreen = ({ question }) => {
   };
 
   const addAnswer = async (e) => {
+    //Handling the addAnswer event
     e.preventDefault();
 
     if (textAnswer !== "") {
+      // Sending the answer if its not empty along with the currentUser details
       await axios
         .post(`/answer/${_id}`, {
           answers: textAnswer,
@@ -99,6 +105,7 @@ const QuestionScreen = ({ question }) => {
         })
         .then((res) => {
           if (res.status === 201) {
+            // If adding answer is success dispatching the getQuestionById action for updating the current state
             toast.success(res.data.message);
             dispatch(getQuestionById(_id));
           }
@@ -108,6 +115,9 @@ const QuestionScreen = ({ question }) => {
   };
 
   const voteQues = async () => {
+    //Handling the vote Question event
+
+    // Sending the vote request for the current Question by id along with current User
     await axios
       .post(`/vote/question/${_id}`, { user: currentUser })
       .then((res) => {
@@ -120,6 +130,9 @@ const QuestionScreen = ({ question }) => {
   };
 
   const voteAns = async (id) => {
+    // Handling the vote question answer
+
+    // Sending the vote request for the current answer by id along with current user and question id
     await axios
       .post(`/vote/answer/${id}`, { user: currentUser, question_id: _id })
       .then((res) => {
@@ -132,6 +145,7 @@ const QuestionScreen = ({ question }) => {
   };
 
   const createdAt = (date) => {
+    // Helper function for formatting the date
     const newDate = new Date(date).toLocaleString();
     return newDate;
   };
@@ -141,6 +155,7 @@ const QuestionScreen = ({ question }) => {
       <div className="view-questions_top">
         <div className="view-questions_header">
           <h1>{title}</h1>
+          {/* Redirected to the askQuestion Page once clicked */}
           <Link to="/ask-question">
             <button>Ask Question</button>
           </Link>
@@ -154,6 +169,7 @@ const QuestionScreen = ({ question }) => {
           <p onClick={voteQues} className="rate">
             <GradeIcon />
           </p>
+          {/* Rendering the vote Count by the number of votes available in question state */}
           <p>{question.voteQues.length ? question.voteQues.length : 0}</p>
         </div>
         <div className="question-body">
@@ -175,6 +191,7 @@ const QuestionScreen = ({ question }) => {
           </div>
           <div className="comments">
             <div className="comment">
+              {/* if comments are available mapping them */}
               {comments.map((comment) => {
                 return (
                   <>
@@ -194,6 +211,7 @@ const QuestionScreen = ({ question }) => {
             >
               Add a comment
             </p>
+            {/* Toggling the comment box by setting a boolean state */}
             {show && (
               <div className="title">
                 <textarea
@@ -219,8 +237,10 @@ const QuestionScreen = ({ question }) => {
         </div>
       </div>
       <div className="view-answers">
+        {/* Rendering the vote Count by the number of votes available in question state */}
         <p>{answers.length ? answers.length : "0"} Answers</p>
 
+        {/* if answers are available mapping them */}
         {answers.map((answer) => {
           const html = `${answer.answers}`;
           const options = {

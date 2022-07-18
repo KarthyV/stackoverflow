@@ -4,11 +4,13 @@ import { useDispatch } from "react-redux";
 import { logOut } from "../../redux/actions/auth";
 
 const SideBarRow = ({ title, Icon }) => {
+  //Getting the title and Icon as prop from sidebar comp
+
   const dispatch = useDispatch();
   const extra = title.includes("Welcome");
-  const handleClick = (e) => {
-    e.stopPropagation();
+  const handleClick = () => {
     if (title === "Logout") {
+      // Dispatching the logout action
       dispatch(logOut());
     }
   };

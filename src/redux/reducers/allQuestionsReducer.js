@@ -1,10 +1,13 @@
 const initialState = {
+  //Setting up initialState
   loading: false,
   questions: [],
 };
 
 const allQuestionReducer = (state = initialState, action) => {
-  switch (action.type) {
+  switch (
+    action.type //handling the switch case as per the action type
+  ) {
     case "GET_QUESTIONS_REQUEST":
       return { ...state, loading: true };
     case "GET_QUESTIONS_SUCCESS":

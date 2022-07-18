@@ -1,15 +1,18 @@
 const initialState = {
+  //Setting up initialState
   loading: false,
   accessToken: sessionStorage.getItem("sof-access-token")
     ? sessionStorage.getItem("sof-access-token")
     : null,
-  user: sessionStorage.getItem("sof-user")
+  user: sessionStorage.getItem("sof-user") //Checking the session storage if the user is already logged in
     ? JSON.parse(sessionStorage.getItem("sof-user"))
     : null,
 };
 
 const authReducer = (state = initialState, action) => {
-  switch (action.type) {
+  switch (
+    action.type //handling the switch case as per the action type
+  ) {
     case "GOOGLE_AUTH_REQUEST":
       return { ...state, loading: true };
     case "GOOGLE_AUTH_SUCCESS":

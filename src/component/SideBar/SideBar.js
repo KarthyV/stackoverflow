@@ -11,9 +11,12 @@ import { useSelector } from "react-redux";
 const SideBar = () => {
   const { user } = useSelector((state) => state.auth);
 
+  //NOTE: Getting the user name from auth state
+
   return (
     <div className="Sidebar">
       <div className="SideBar_inner">
+        {/* NOTE: passing the title of the sidebar row and the icon component as prop */}
         <SideBarRow title={`Welcome ${user?.name}`} Icon={CameraFrontIcon} />
         PUBLIC
         <Link style={{ textDecoration: "none" }} to="/">

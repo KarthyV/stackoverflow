@@ -11,10 +11,10 @@ const Users = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(getAllUsers());
+    dispatch(getAllUsers()); //Dispatching the getAllUsers action
   }, [dispatch]);
 
-  const { users, loading } = useSelector((state) => state.allUsers);
+  const { users, loading } = useSelector((state) => state.allUsers); // Getting all the users from allUsers state
   return (
     <div className="home__page">
       <SideBar />
@@ -25,10 +25,12 @@ const Users = () => {
             <button onClick={() => navigate(-1)}>Go Back</button>
           </div>
           <div className="users_total">
+            {/* If Users are available display their count */}
             <h3>Available Users : {users?.length ? users.length : 0}</h3>
           </div>
         </div>
         <div className="users_box">
+          {/* If Users are available display their picture,name and email addresses via UsersBox comp */}
           {!loading &&
             users.map((user) => {
               return <UsersBox key={user._id} user={user} />;

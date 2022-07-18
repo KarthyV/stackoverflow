@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const AskQuestion = () => {
-  const { user } = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.auth); // Getting user from auth state via Redux
   const navigate = useNavigate();
 
   const [title, setTitle] = useState("");
@@ -69,6 +69,7 @@ const AskQuestion = () => {
     "video",
   ];
 
+  //NOTE: Handles submit once the answer is not empty
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (title !== "" || body !== "") {
@@ -110,6 +111,7 @@ const AskQuestion = () => {
               Include all the information someone would need to answer your
               question
             </small>
+            {/*NOTE: React Quill setup*/}
             <ReactQuill
               value={body}
               onChange={(value) => setBody(value)}
@@ -123,6 +125,7 @@ const AskQuestion = () => {
             <small>
               Add up to 5 tags to describe what your question is about
             </small>
+            {/*NOTE: React Tags component setup*/}
             <TagsInput
               value={tags}
               onChange={setTags}

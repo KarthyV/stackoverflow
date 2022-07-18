@@ -15,17 +15,20 @@ import NotFound from "./component/NotFound/pageNotFound";
 
 function App() {
   const navigate = useNavigate();
-  const { accessToken, loading } = useSelector((state) => state.auth);
-  const { userDetails } = useSelector((state) => state.currentUser);
+  const { accessToken, loading } = useSelector((state) => state.auth); // Getting the access token from auth state
+  const { userDetails } = useSelector((state) => state.currentUser); // Getting the current user from the currentUser state
 
   useEffect(() => {
     if (!loading && !accessToken) {
+      //Checking if the access token is available, if not user will be redirected to the auth page
       navigate("/auth");
     }
+    // eslint-disable-next-line
   }, [accessToken, loading]);
 
   useEffect(() => {
     if (accessToken && userDetails) {
+      //If user is logged In sending the userDetails for adding him to the database
       axios
         .post("/users/new", { currentUser: userDetails })
         .then((res) => {

@@ -1,10 +1,13 @@
 const initialState = {
+  //Setting up initialState
   loading: false,
   users: [],
 };
 
 export const allUsersReducer = (state = initialState, action) => {
-  switch (action.type) {
+  switch (
+    action.type //handling the switch case as per the action type
+  ) {
     case "GET_USERS_REQUEST":
       return { ...state, loading: true };
     case "GET_USERS_SUCCESS":

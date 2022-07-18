@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import parse from "html-react-parser";
 
 const QuestionCard = ({ question }) => {
+  //NOTE: Taking the individual question from Questions Component as props
   return (
     <div className="question_card">
       <div className="questionCard_left">
