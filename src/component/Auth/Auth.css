@@ -63,3 +63,9 @@
   outline: none;
   border-radius: 3px;
 }
+
+.error_message {
+  margin-top: 20px;
+  text-align: center;
+  color: red;
+}

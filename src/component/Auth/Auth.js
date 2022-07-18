@@ -1,5 +1,5 @@
-import { Box, Button, Card, Container } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { Box, Container } from "@mui/material";
+import React, { useEffect } from "react";
 import "./Auth.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -12,10 +12,11 @@ import { useNavigate } from "react-router-dom";
 const Auth = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { accessToken } = useSelector((state) => state.auth);
+  const { accessToken, error, loading } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (accessToken) navigate("/");
+    // eslint-disable-next-line
   }, [accessToken]);
 
   const handleGoogleSignIn = () => {
@@ -63,38 +64,11 @@ const Auth = () => {
             />
             <p>Login with GitHub</p>
           </div>
-          {/* <Card className="manual-auth">
-            {register ? (
-              <div className="auth-fields">
-                <p>Username</p>
-                <input type="text" />
-              </div>
-            ) : (
-              ""
-            )}
-            <div className="auth-fields">
-              <p>Email</p>
-              <input type="email" />
+          {!loading && error && (
+            <div className="error_message">
+              <p>{error.code}</p>
             </div>
-            <div className="auth-fields">
-              <p>Password</p>
-              <input type="password" />
-            </div>
-            <Button variant="contained" type="submit">
-              {register ? "Register" : "Login"}
-            </Button>
-          </Card>
-        
-        <p
-          onClick={() => setRegister(!register)}
-          style={{
-            textDecoration: "underline",
-            marginTop: "10px",
-            cursor: "pointer",
-          }}
-        >
-          {!register ? "Don't Have an account?" : "Already have an account?"}
-        </p> */}
+          )}
         </div>
       </Box>
     </Container>

@@ -34,9 +34,6 @@ const Users = () => {
               return <UsersBox key={user._id} user={user} />;
             })}
         </div>
-        {/* {questions.map((question) => {
-            return <QuestionCard question={question} key={question._id} />;
-          })} */}
       </div>
     </div>
   );

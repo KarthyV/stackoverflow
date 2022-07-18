@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Header from "./component/Header/Header";
 import Main from "./component/HomeMain/HomeMain";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
 import AskQuestion from "./component/AskQuestion/AskQuestion";
 import ViewPage from "./component/ViewQuestion/ViewPage";
 import Auth from "./component/Auth/Auth";
@@ -11,6 +11,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "./API/axios";
 import Search from "./component/Search/Search";
+import NotFound from "./component/NotFound/pageNotFound";
 
 function App() {
   const navigate = useNavigate();
@@ -46,6 +47,8 @@ function App() {
         <Route path="/auth" element={<Auth />} />
         <Route path="/users" element={<Users />} />
         <Route path="/search" element={<Search />} />
+        <Route path="/404" element={<NotFound />} />
+        <Route path="*" element={<Navigate replace to="/404" />} />
       </Routes>
       <ToastContainer />
     </div>
