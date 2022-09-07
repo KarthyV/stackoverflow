@@ -4,6 +4,8 @@ import { getAllQuestions } from "../../redux/actions/allQuestions";
 import Questions from "../Questions/Questions";
 import SideBar from "../SideBar/SideBar";
 import "./HomeMain.css";
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 
 const Main = () => {
   const dispatch = useDispatch();
@@ -16,6 +18,13 @@ const Main = () => {
       dispatch(getAllQuestions());
     }
   }, [dispatch, accessToken]);
+
+  if (loading || questions.length < 1)
+    return (
+      <Box sx={{ display: "flex", justifyContent: "center", height: "100vh" }}>
+        <CircularProgress />
+      </Box>
+    );
 
   return (
     <div className="home__page">

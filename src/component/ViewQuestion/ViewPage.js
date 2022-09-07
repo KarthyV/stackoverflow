@@ -5,6 +5,7 @@ import "./ViewPage.css";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getQuestionById } from "../../redux/actions/viewQuestion";
+import { Box, CircularProgress } from "@mui/material";
 
 const ViewPage = () => {
   const { id } = useParams();
@@ -15,6 +16,13 @@ const ViewPage = () => {
   }, [id, dispatch]);
 
   const { question, loading } = useSelector((state) => state.viewQuestion);
+
+  if (loading || !question)
+    return (
+      <Box sx={{ display: "flex", justifyContent: "center", height: "100vh" }}>
+        <CircularProgress />
+      </Box>
+    );
 
   return (
     <div className="home__page">

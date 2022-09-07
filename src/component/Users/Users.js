@@ -1,3 +1,4 @@
+import { Box, CircularProgress } from "@mui/material";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -15,6 +16,14 @@ const Users = () => {
   }, [dispatch]);
 
   const { users, loading } = useSelector((state) => state.allUsers); // Getting all the users from allUsers state
+
+  if (loading || users.length < 1)
+    return (
+      <Box sx={{ display: "flex", justifyContent: "center", height: "100vh" }}>
+        <CircularProgress />
+      </Box>
+    );
+
   return (
     <div className="home__page">
       <SideBar />
