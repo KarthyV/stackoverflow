@@ -72,7 +72,7 @@ const AskQuestion = () => {
   //NOTE: Handles submit once the answer is not empty
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (title !== "" || body !== "") {
+    if (title !== "" && body !== "") {
       const data = { title, body: body, tags, user };
 
       await axios
