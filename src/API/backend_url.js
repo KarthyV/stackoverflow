@@ -1,1 +1,1 @@
-export const BACKEND_URL = "https://skf-clone-server.herokuapp.com";
+export const BACKEND_URL = "https://stackoverflow-backend.vercel.app";
